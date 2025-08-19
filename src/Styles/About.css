@@ -1,0 +1,168 @@
+.about-container{
+    position: relative;
+    /* min-height: calc(100vh - 150px - 166.08px); */
+    padding-top: 150px;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #c58940;
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; */
+   
+}
+
+.about-bg-img{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+   
+   
+}
+
+
+
+
+.about-container .container{
+    padding-top:12px ;
+    padding-bottom:12px ;
+    height: 100vh;
+}
+
+
+.about-content{
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+}
+
+.about-content .row{
+    height: inherit;
+}
+
+
+.services-container{
+    position: relative;
+    min-height: 60vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    z-index: 10;
+
+}
+
+.service-heading{
+    position: relative;
+    text-align: center;
+    padding: 12px;
+    color: #c58940;
+    margin-bottom: 20px;
+    z-index: 10;
+
+}
+
+
+ 
+
+ .services-container .row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0px 10px;
+    position: relative;
+    margin-bottom: 15px;
+
+}
+
+
+.row .col-12{
+    margin-bottom: 15px;
+
+}
+
+.row .card{
+    display: flex;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    background-color: #000000;
+    border: 1px solid #F8E1B7;
+    transition: transform 0.3s ease;
+}
+
+.card:hover{
+    transform: scale(1.05) ;
+
+}
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+    filter: brightness(70%);
+}
+
+.card-img-top:hover{
+    filter: none;
+}
+
+
+
+.card .card-title{
+    color: #c58940;
+    text-align: center;
+}
+
+.card .card-text ul{
+list-style-type: circle;
+color: #F8E1B7;
+}
+
+.spacer{
+    aspect-ratio: 900/100;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+   
+}
+
+.bottom{
+    background-image: url('/Images/essentials/services_wave.svg');
+   
+}
+
+.flip{
+    transform: rotate(180deg);
+}
+
+/* Shape divider css */
+
+/* .custom-shape-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 0;
+}
+
+.custom-shape-divider svg {
+    position: relative;
+    display: block;
+    width: calc(130% + 1.3px);
+    height: 179px;
+}
+
+.custom-shape-divider .shape-fill {
+    fill: #F8E1B7;
+} */
+
+
+
+/* KEYFRAMES */
+
+

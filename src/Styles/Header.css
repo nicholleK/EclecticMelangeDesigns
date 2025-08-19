@@ -1,0 +1,445 @@
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background: linear-gradient(to right, gold 0.01%, orange 10%, #1a1a1a 100%); */
+    background-color: #000000;
+    height: 150px;
+    width: 100vw;
+    /* position: relative; */
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+}
+
+.navbar-logo {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin: 10px;
+}
+
+.navbar-logo .icon{
+    position: relative;
+    width: 140px;
+    border-radius: 30%;
+    /* box-shadow: 5px 10px 15px black; */
+    transition: transform 0.3s ease;
+
+   
+}
+
+.navbar-brand{
+    display: none;
+}
+
+.navbar-logo .icon:hover{
+  transform: scale(1.01);
+}
+
+
+/* hide checkbox */
+input[type='checkbox']{
+    display: none;
+}
+
+
+
+/* The open and close icons */
+.menu-icon{
+    position: fixed;
+    cursor: pointer;
+    background-color: transparent;
+    top: 50px;
+    left: 250px;
+    color: #F8E1B7;
+    z-index: 1000;  /* place it on top of background color of header */
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease, background-color 0.5s ease;  /* apply the above properties over 0.5s each with ease  */
+    
+}
+
+
+
+
+.menu-icon .open-icon{
+    display: block;
+    transition: opacity 0.3s ease;  /* transition visibility using the opacity property */
+    cursor: pointer;
+}
+
+.menu-icon .close-icon{
+    font-size: 1.5rem;
+    display: none;
+    transition: opacity 0.3s ease;
+
+}
+
+/* when checked apply the properties to the menu-icon open-icon element */
+input[type='checkbox']:checked ~ .menu-icon .open-icon{
+    display: none;  /* hide the open icon after pressing (when checked) */
+    opacity: 0;
+}
+
+
+/* when checked apply the properties to the menu-icon open-icon element */
+input[type='checkbox']:checked ~ .menu-icon .close-icon{
+    display: block;  /* show the close icon after pressing the open-icon (when checked) */
+    opacity: 1;
+    color: #000000;
+}
+
+
+
+.backdrop-blur{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+input[type='checkbox']:checked ~ .backdrop-blur{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* hiddenLinks style properties */
+.hiddenLinks{
+    position: fixed;
+    top: 100px;
+    right: -200px;
+    height: 50%;
+    width: 165px;
+    overflow-y: auto;
+    /* background: linear-gradient(to right, gold 0.01%, orange 10%, #1a1a1a 100%); */
+    animation: slide-out 1.3s forwards;
+    border: none;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    z-index: 4;
+    background-color: #000000;
+}
+
+/* for the unordered links  */
+.hiddenLinks ul{
+    list-style: none;
+    padding: 0;
+    margin-top: 50px;
+}
+
+/* for the actual links  */
+.hiddenLinks ul a{
+    position: relative;
+    display: block;
+    padding: 20px;
+    color:#F8E1B7;
+    font-size: 1.5em;
+    font-family: 'Lora', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    animation: fade-in 0.3s ease;
+    text-transform: lowercase;
+
+}
+
+.mainLinks{
+    display: none;
+}
+
+
+
+
+/* for the underline-like effect under the links  */
+.hiddenLinks ul a::before{
+    content: "";
+    position: absolute;
+    bottom: 15px;
+    left: 45px;
+    width: 0;
+    height: 2px;
+    background-color: rgb(244, 160, 3);
+    transition: width 0.3s ease; /* transition using the width  */
+    
+}
+
+/* for the underline-like effect under the links  */
+.hiddenLinks ul a:focus::before,
+.hiddenLinks ul a:active::before{
+    width: 40%;
+}
+
+/* KEYFRAMES */
+@keyframes slide-in{
+    from{
+        /* from off-screen and 0 opacity  */
+        right: -200px;  
+        opacity: 0;
+
+    }
+    to{
+        /* to the middle of the screen and opacity enables visibity  */
+        right: 0px;
+        opacity: 1;
+
+    }
+}
+
+
+@keyframes slide-out{
+    from{
+        /* from current on-screen position where its visible  */
+        right: 0;
+        opacity: 1;
+    }
+    to{
+        /* to off-screen and disable visibility  */
+        right: -200px;
+        opacity: 0;
+    }
+}
+
+
+@keyframes fade-in{
+    from{
+        /*  0 opacity  */
+        opacity: 0;
+
+    }
+    to{
+        /*   enable visibity  */
+        opacity: 1;
+
+    }
+}
+
+
+/* when the checkbox is checked (on) apply the following properties to hiddenLinks  */
+input[type='checkbox']:checked ~ .hiddenLinks{
+    animation: slide-in 1.3s forwards;  /* animation uses slide-in keyframe to bring in hiddenLinks div over 1.3s and maintains the new state afterwards (doesn't slide back)  */
+    opacity: 1; /* full opacity = visibility */
+    pointer-events: auto; /* ensure elements in hiddenLinks are clickable */
+}
+
+/* when the checkbox is checked (on) apply the following properties to hiddenLinks a tags */
+input[type='checkbox']:checked ~ .hiddenLinks ul a{
+   opacity: 1;  /* when hiddenLinks slides in show elements inside it */
+   transform: translateX(0);  /*moves the elements horizontally to 0 from their current position  */
+}
+
+/* Ensures that when user reloads hiddenLinks stays hidden */
+input[type='checkbox']:not(:checked) ~ .hiddenLinks{
+    display: none;
+}
+
+
+/* when the checkbox is checked (on) apply the following properties to menu icon  */
+input[type='checkbox']:checked ~ .menu-icon{
+    /* background: linear-gradient(to right, gold 0.01%, orange 10%, #1a1a1a 100%); */
+    background:#F8E1B7;
+   transform:  rotate(90deg);  /* rotate icon 90 degrees */
+   transition: transform 0.5s ease, background-color 0.5s ease;  /* apply the above properties over 0.5s each with ease  */
+   border-radius: 15px; /* rounded corners */
+}
+
+/* when the checkbox is not checked (off) apply the following properties to menu-icon / revert to original state or properties  */
+input[type='checkbox'] ~ .menu-icon{
+    background-color: transparent;  
+    transform:  rotate(0deg); /* rotate back to initial position */
+    border-radius: 15px;
+ }
+
+
+
+ @media (max-width:390px){
+   
+        .navbar-logo{
+            margin-top: 20px;
+    
+}
+}
+
+
+ 
+@media (min-width: 400px) and (max-width:480px){
+    .menu-icon{
+        left: 365px;
+        }
+
+        .navbar-logo{
+            margin-top: 20px;
+    
+}
+}
+
+@media (min-width: 480px) and (max-width:540px){
+    .menu-icon{
+        left: 400px;
+        }
+
+        .navbar-logo{
+            margin-top: 20px;
+    
+}
+        
+}
+
+@media (min-width: 540px) and (max-width:600px){
+
+    .menu-icon{
+        left: 450px;
+        }
+
+        .navbar-logo{
+            margin-top: 20px;
+    
+}
+}
+
+@media (min-width: 600px) and (max-width: 700px) {
+    .menu-icon{
+        left: 520px;
+        }
+
+        .navbar-logo{
+            margin-top: 30px;
+    
+}
+    
+}
+
+
+
+
+@media (min-width: 601px){
+    .header{
+        /* background: linear-gradient(to right,#1a1a1a  0%,  rgb(163, 139, 7) 70%, rgb(255, 111, 0) 90%, #1a1a1a 100%); */
+        background: black;
+    }
+
+    .navbar-logo{
+        margin-top: 30px;
+    justify-content: center;
+    right: 190px; 
+
+}
+
+}
+
+
+
+@media (min-width: 701px) and (max-width: 768px) {
+    .menu-icon{
+        left: 590px;
+        }
+
+
+        .navbar-logo{
+            margin-top: 30px;
+            justify-content: center;
+            right: 200px; 
+    
+}
+}
+
+
+@media (min-width:768px){
+
+
+
+    .menu-icon{
+        display: none;
+    }
+
+    .mainLinks{
+        display: inline-block;
+        text-decoration: none;
+        overflow: hidden;
+    }
+
+    .nav-link {
+        color: rgb(0, 0, 0) !important;
+        font-weight: bold;
+        
+    }
+
+    .nav-container .custom-nav-link{
+        border-radius: 20px;
+        background-color: #F8E1B7;
+        margin: 5px;
+        padding: 0px;
+        font-size: clamp(1.1em, 2vw, 1.2rem);
+    }
+
+    .nav-link.active{
+        color: #F8E1B7 !important;
+
+    }
+
+    .custom-nav-link.active{
+        background-color: rgb(0, 0, 0) !important;
+    }
+
+    .navbar-logo{
+        display: none !important;
+    }
+
+
+    .navbar-brand{
+        display: block;
+        position: relative !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden;
+    }
+
+    .navbar-brand img{
+        width: clamp(140px, 10%, 40vw) ;
+        border-radius: 30% !important;
+        box-shadow: 10px 10px 15px black !important;   
+        overflow: hidden;
+
+    }
+
+
+    
+    @media (min-width:992px){
+
+       .mainLinks .basic-nav-container{
+            padding-right: 10% !important;
+        }
+
+        .nav-container .custom-nav-link{
+            margin-left: 30px;
+
+        }
+
+
+    }
+
+
+
+}
+
+
+ 
+
+
+
+ 
+
+
+
+

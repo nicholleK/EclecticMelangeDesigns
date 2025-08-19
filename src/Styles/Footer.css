@@ -1,0 +1,141 @@
+:root{
+    --font-weight: 900 ;
+    --color: #F8EDE3;
+}
+
+
+.footer-container{
+    width: 100vw;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #F8E1B7;
+}
+
+
+.quote-image-container{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows:  1fr;
+    width: 100vw;
+    height: auto;
+   
+}
+
+.copyright-attribution{
+    width: 50vw;
+}
+
+.quote-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color);
+    position: relative;
+    height: 100%;
+    width: 100%;
+    font-size: clamp(0.7em, 3vw, 2rem);
+}
+
+
+
+.image-box{
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.image-box img{
+    width: 135%;
+    border-radius: 3px;
+    height: 145%;
+    transform: rotate(60deg);
+    object-fit: cover;    
+
+}
+
+.contact-details{
+    color: white;
+}
+
+
+
+/* 
+.footer-links{
+    display: inline-block;
+    width: 90vw;
+    height: auto;    
+    background-color: black;
+    text-align: center;
+   border: 1px solid #000000;
+   border-radius: 10px;
+   margin-top: 0px;
+
+}
+
+.footer-links a{
+    margin-left: 20px;
+    font-family: 'Lora', sans-serif;
+    font-size: 15px;
+    color: aliceblue;
+    text-decoration: none;
+    text-transform: lowercase;
+} */
+
+.copyright-attribution{
+    text-align: center;
+    width: 100vw;
+    height: auto;
+    color: #D6C0B3;
+    font-size: clamp(0.6em, 1.5vw, 2rem);
+    margin-bottom: 10px;
+}
+
+.copyright-attribution a{
+    color: rgb(203, 131, 23);
+}
+
+
+@media (min-width: 768px){
+
+.image-box{
+    display: none;
+}
+
+.quote-box{
+    height: 100%;
+    width: 100%;
+    font-size: clamp(1.2em, 2vw, 1.2rem);
+    margin: 20px;
+}
+
+.quote-image-container{
+    display: flex;
+}
+
+.quote-box p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.copyright-attribution{
+    font-size: clamp(0.5em, 1.3vw, 0.8rem);
+    line-height: 0.5em;
+}
+
+.footer-container{
+    border-top: 1px solid #3c3c3c;
+
+}
+
+
+
+}
+
+

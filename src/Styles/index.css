@@ -1,0 +1,29 @@
+:root{
+    --background-color:  #F8E1B7;
+
+}
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+}
+
+html, body{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    background-color: black !important;
+}
+
+header, section{
+    margin: 0;
+    padding: 0;
+}
+
+input[type='checkbox']:checked ~ body{
+    overflow: hidden;
+}
+
