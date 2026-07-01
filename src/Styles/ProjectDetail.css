@@ -1,0 +1,222 @@
+.project-detail {
+  background-color: var(--emd-black);
+  display: block;
+}
+
+/* Hero */
+
+.project-hero {
+  height: 70vh;
+  min-height: 420px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.project-hero-overlay {
+  width: 100%;
+  padding: 40px 6vw;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+}
+
+.project-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--emd-cream);
+  text-decoration: none;
+  font-family: var(--emd-font-sans);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  transition: color 0.25s ease;
+}
+
+.project-back:hover {
+  color: var(--emd-gold-light);
+}
+
+.project-hero-cat {
+  color: var(--emd-gold-light);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-family: var(--emd-font-sans);
+  margin: 0 0 8px;
+}
+
+.project-hero-title {
+  color: var(--emd-cream);
+  font-family: var(--emd-font-serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  margin: 0;
+}
+
+/* Body */
+
+.project-body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 6vw 40px;
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding-bottom: 28px;
+  border-bottom: 0.5px solid var(--emd-border);
+}
+
+.project-meta-label {
+  display: block;
+  color: var(--emd-gold);
+  font-family: var(--emd-font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.project-meta-value {
+  color: var(--emd-cream);
+  font-family: var(--emd-font-serif);
+  font-size: 1.05rem;
+}
+
+.project-overview {
+  color: var(--emd-cream);
+  font-family: var(--emd-font-serif);
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  line-height: 1.6;
+  margin: 36px 0 28px;
+}
+
+.project-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 44px;
+}
+
+.project-service-chip {
+  background-color: var(--emd-black-soft);
+  border: 0.5px solid var(--emd-border);
+  border-radius: 30px;
+  padding: 8px 16px;
+  color: var(--emd-cream-muted);
+  font-family: var(--emd-font-sans);
+  font-size: 0.82rem;
+}
+
+.project-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.project-col h3 {
+  color: var(--emd-gold-light);
+  font-family: var(--emd-font-serif);
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin: 0 0 12px;
+}
+
+.project-col p {
+  color: var(--emd-text-muted);
+  font-family: var(--emd-font-sans);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Gallery */
+
+.project-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project-gallery-item img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+}
+
+/* Next project */
+
+.project-next {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 6vw 60px;
+  border-top: 0.5px solid var(--emd-border);
+  text-align: center;
+}
+
+.project-next-label {
+  display: block;
+  color: var(--emd-gold);
+  font-family: var(--emd-font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.project-next-title {
+  color: var(--emd-cream);
+  font-family: var(--emd-font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.project-next-title:hover {
+  color: var(--emd-gold-light);
+}
+
+/* Missing */
+
+.project-missing {
+  background-color: var(--emd-black);
+  min-height: 70vh;
+  padding: 200px 6vw 80px;
+  text-align: center;
+  font-family: var(--emd-font-serif);
+}
+
+.project-missing h1 {
+  color: var(--emd-cream);
+  font-weight: 500;
+}
+
+.project-missing p {
+  color: var(--emd-text-muted);
+  margin: 12px 0 24px;
+}
+
+.project-back-btn,
+.project-missing .project-back-btn {
+  display: inline-block;
+  background-color: var(--emd-cream);
+  color: #1a1a1a;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-family: var(--emd-font-sans);
+}
+
+@media (max-width: 600px) {
+  .project-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .project-meta {
+    gap: 24px;
+  }
+}

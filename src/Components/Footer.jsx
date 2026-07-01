@@ -15,18 +15,12 @@ function Footer() {
               Vinci{" "}
             </p>{" "}
           </div>
-          <div className="image-box">
-            <img
-              src="/Images/rene-bohmer-footer-unsplash.jpg"
-              alt="Rene Bohmer abstract photo @ Unsplash"
-            />
-          </div>
         </div>
 
         <div className="copyright-attribution">
           <p>
             {" "}
-            &copy; 2024-2025 Eclectic Mélange Designs. All rights reserved.
+            &copy; 2024 Eclectic Mélange Designs. All rights reserved.
           </p>
           Some media used on this website are royalty free sourced from{" "}
           <a

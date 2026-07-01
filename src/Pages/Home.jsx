@@ -7,17 +7,15 @@ import { ScrollTrigger } from "gsap/all";
 import { useSpring, animated } from "@react-spring/web";
 import { useInView } from "react-intersection-observer";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Container from "react-bootstrap/Container";
 import Carousel from "react-bootstrap/Carousel";
 import CarouselItem from "react-bootstrap/esm/CarouselItem";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import AutoScroll from "embla-carousel-auto-scroll";
-import EmblaCarousel from "embla-carousel";
-import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
+import ContactModal from "../Components/ContactModal";
+import MediumsTicker from "../Components/MediumsTicker";
+import Testimonials from "../Components/Testimonials";
 
 gsap.registerPlugin(ScrollTrigger); //registers scroll trigger
 
@@ -39,19 +37,6 @@ function Home() {
     AutoScroll(autoScrollOptions),
   ]);
 
-  useEffect(() => {
-    if (emblaRef.current) {
-      const embla = EmblaCarousel(emblaRef.current, { loop: true }, [
-        WheelGesturesPlugin(wheelOptions),
-      ]);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (emblaApi) {
-      console.log(emblaApi.slideNodes()); // Access API
-    }
-  }, [emblaApi]);
 
   /* -----------------------------------------------------------------------------------------------  */
   //Variables
@@ -67,22 +52,16 @@ function Home() {
   //for txt-box grayscale transitions
   function handleMouseMove(event) {
     const boxRect = event.target.getBoundingClientRect();
-    const mouseX = event.clientX - boxRect.left; //x position inside box
-    const mouseY = event.clientY - boxRect.top; //y position inside box
-
-    // % of mouse pos relative to box dimensions
+    const mouseX = event.clientX - boxRect.left;
     const percX = mouseX / boxRect.width;
-
-    //adjust grayscale based on X pos of mouse
-    const newGrayscale = percX * 100; //more grayscale on left, less on right
-    setGrayscale(newGrayscale); //update state
+    const newGrayscale = percX * 100;
+    setGrayscale(newGrayscale);
   }
 
   function handleTouchMove(event) {
     const boxRect = event.target.getBoundingClientRect();
-    const touchX = event.touches[0].clientX - boxRect.left; //x position inside box
-    const percX = touchX / boxRect.width; //y position inside box
-
+    const touchX = event.touches[0].clientX - boxRect.left;
+    const percX = touchX / boxRect.width;
     const newGrayscale = percX * 100;
     setGrayscale(newGrayscale);
   }
@@ -92,7 +71,7 @@ function Home() {
   }
 
   function handleTouchEnd() {
-    setGrayscale(100);
+    setGrayscale(0);
   }
 
   /* -----------------------------------------------------------------------------------------------  */
@@ -101,21 +80,16 @@ function Home() {
 
   useEffect(() => {
     const element = contentRef.current;
-    gsap.fromTo(
-      element, // Target element
-      { opacity: 0, y: 50 }, // Start state
-      {
-        opacity: 1,
-        y: 0, // End state
-        scrollTrigger: {
-          //start and stop animation. smooth scrubbing
-          trigger: element,
-          start: "top 90%",
-          end: "top 50%",
-          scrub: 1,
-        },
-      }
-    );
+    gsap.from(element, {
+      y: 50,
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: element,
+        start: "top 90%",
+        toggleActions: "play none none none",
+      },
+    });
   }, []);
 
   /* -----------------------------------------------------------------------------------------------  */
@@ -312,7 +286,8 @@ function Home() {
           <div className="left-hero-section">
             <img
               className="left-hero-image"
-              src="Images/emanuel-haas-MZ4fq4uTh0k-unsplash.jpg"
+              src="/Images/emanuel-haas-MZ4fq4uTh0k-unsplash.jpg"
+              alt="Fashion editorial"
             />{" "}
           </div>
           <div className="headline-container">
@@ -345,6 +320,7 @@ function Home() {
             <img
               className="right-hero-image"
               src="/Images/emanuel-haas-MZ4fq4uTh0k-unsplash.jpg"
+              alt="Fashion editorial mirrored"
             />{" "}
           </div>
         </div>
@@ -399,87 +375,39 @@ function Home() {
               </Button>
 
               {show && (
-                <>
-                  <div className="modal-backdrops" />
-
-                  <Modal
-                    show={show}
-                    fade
-                    tabIndex="-1"
-                    onHide={handleClose}
-                    centered
-                    className="custom-modal"
-                  >
-                    <Modal.Header closeButton className="modal-header">
-                      <Modal.Title> Leave us a message! </Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body className="modal-body">
-                      <Form className="custom-form">
-                        <Form.Group className="mb-3" controlId="emailId">
-                          <FloatingLabel
-                            controlId="floatingEmail"
-                            label="Email Address"
-                            className="mb-3"
-                          >
-                            <Form.Control
-                              type="email"
-                              placeholder="Enter your email"
-                              autoFocus
-                            />
-                          </FloatingLabel>
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="messageId">
-                          <FloatingLabel
-                            controlId="floatingMssg"
-                            label="Message"
-                            className="mb-3"
-                          >
-                            <Form.Control
-                              as="textarea"
-                              rows={4}
-                              placeholder="Type a message"
-                            />
-                          </FloatingLabel>
-                        </Form.Group>
-                      </Form>
-                    </Modal.Body>
-                    <Modal.Footer className="modal-footer">
-                      {alertVisible && (
-                        <div
-                          className="alert alert-info fade show"
-                          id="alert"
-                          role="alert"
-                        >
-                          <strong>Message Sent!</strong>
-                        </div>
-                      )}
-
-                      <Button
-                        type="button"
-                        aria-label="Close"
-                        onClick={handleClose}
-                        variant="secondary"
-                      >
-                        {" "}
-                        Close
-                      </Button>
-                      <Button
-                        type="button"
-                        onClick={handleAlert}
-                        variant="primary"
-                        className="btn"
-                      >
-                        {" "}
-                        Submit
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                </>
+                <ContactModal
+                  show={show}
+                  onHide={handleClose}
+                  onAlert={handleAlert}
+                  alertVisible={alertVisible}
+                />
               )}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------------------------------- */}
+
+      {/* Mobile-only CTA that replaces the collage on small screens */}
+      <section className="mobile-cta">
+        <p className="mcta-eyebrow">Eclectic by nature</p>
+        <h2 className="mcta-title">
+          <span>Design</span> <span>that</span> <span>connects</span>
+        </h2>
+        <p className="mcta-text">
+          From interiors to interfaces — thoughtful design, crafted around you.
+        </p>
+        <div className="mcta-actions">
+          <button
+            className="mcta-btn mcta-primary"
+            onClick={() => navigate("/designs")}
+          >
+            Explore designs
+          </button>
+          <button className="mcta-btn mcta-outline" onClick={handleShow}>
+            Get in touch
+          </button>
         </div>
       </section>
 
@@ -609,91 +537,19 @@ function Home() {
                 </Button>
 
                 {show && (
-                  <>
-                    <div className="modal-backdrops" />
-
-                    <Modal
-                      show={show}
-                      fade
-                      tabIndex="-1"
-                      onHide={handleClose}
-                      centered
-                      className="custom-modal"
-                    >
-                      <Modal.Header closeButton className="modal-header">
-                        <Modal.Title> Leave us a message! </Modal.Title>
-                      </Modal.Header>
-
-                      <Modal.Body className="modal-body">
-                        <Form className="custom-form">
-                          <Form.Group className="mb-3" controlId="emailId">
-                            <FloatingLabel
-                              controlId="floatingEmail"
-                              label="Email Address"
-                              className="mb-3"
-                            >
-                              <Form.Control
-                                type="email"
-                                placeholder="Enter your email"
-                                autoFocus
-                              />
-                            </FloatingLabel>
-                          </Form.Group>
-
-                          <Form.Group className="mb-3" controlId="messageId">
-                            <FloatingLabel
-                              controlId="floatingMssg"
-                              label="Message"
-                              className="mb-3"
-                            >
-                              <Form.Control
-                                as="textarea"
-                                rows={4}
-                                placeholder="Type a message"
-                              />
-                            </FloatingLabel>
-                          </Form.Group>
-                        </Form>
-                      </Modal.Body>
-                      <Modal.Footer className="modal-footer">
-                        {alertVisible && (
-                          <div
-                            className="alert alert-info fade show"
-                            id="alert"
-                            role="alert"
-                          >
-                            <strong>Message Sent!</strong>
-                          </div>
-                        )}
-
-                        <Button
-                          type="button"
-                          aria-label="Close"
-                          onClick={handleClose}
-                          variant="secondary"
-                        >
-                          {" "}
-                          Close
-                        </Button>
-                        <Button
-                          type="button"
-                          onClick={handleAlert}
-                          variant="primary"
-                          className="btn"
-                        >
-                          {" "}
-                          Submit
-                        </Button>
-                      </Modal.Footer>
-                    </Modal>
-                  </>
+                  <ContactModal
+                    show={show}
+                    onHide={handleClose}
+                    onAlert={handleAlert}
+                    alertVisible={alertVisible}
+                  />
                 )}
               </div>
             </div>
           </div>
 
           <div className="video-overlay position-absolute ">
-            <video autoPlay muted loop>
+            <video autoPlay muted loop playsInline>
               <source
                 src="/Videos/1722882-uhd_3840_2160_25fps.mp4"
                 type="video/mp4"
@@ -789,7 +645,13 @@ function Home() {
                 </p>
               </div>
               <div className="col-8">
-                <video className="right-side-video" autoPlay muted loop>
+                <video
+                  className="right-side-video"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                >
                   <source src="/Videos/larger screens.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
@@ -801,12 +663,11 @@ function Home() {
 
       {/* ------------------------------------------------------------------------------------------- */}
 
+      <MediumsTicker />
+
       <section className="home-content">
-        <div
-          className="content-container"
-          ref={contentRef}
-          style={{ zIndex: "1", borderRadius: "50px" }}
-        >
+        <div className="content-container" ref={contentRef}>
+          <p className="services-eyebrow">What we do</p>
           <h1>Services Overview</h1>
           <h4>
             <ul className="list">
@@ -862,6 +723,10 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* ------------------------------------------------------------------------------------------- */}
+
+      <Testimonials />
 
       {/* ------------------------------------------------------------------------------------------- */}
     </>

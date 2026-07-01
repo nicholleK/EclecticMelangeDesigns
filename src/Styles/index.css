@@ -1,29 +1,317 @@
-:root{
-    --background-color:  #F8E1B7;
+:root {
+  --background-color: #f8e1b7;
 
+  /* Shared brand palette — use these everywhere for consistency */
+  --emd-black: #0d0d0d;
+  --emd-black-soft: #16130f;
+  --emd-card: #1c1712;
+  --emd-border: #3a332a;
+  --emd-cream: #f8e1b7;
+  --emd-cream-muted: #cdbfa8;
+  --emd-text-muted: #a99a82;
+  --emd-gold: #935900;
+  --emd-gold-light: #c58940;
+  --emd-whatsapp: #25d366;
+
+  /* Typography — Lora (serif) for headings, Montserrat (sans) for UI/body */
+  --emd-font-serif: "Lora", serif;
+  --emd-font-sans: "Montserrat", sans-serif;
 }
 
-
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box !important;
+/* Accent theming — swap the two gold tokens; everything else follows */
+body.theme-plum {
+  --emd-gold: #6d3b9e;
+  --emd-gold-light: #9a6ac2;
 }
 
-html, body{
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-    background-color: black !important;
+body.theme-teal {
+  --emd-gold: #0f6e56;
+  --emd-gold-light: #1d9e75;
 }
 
-header, section{
-    margin: 0;
-    padding: 0;
+body.theme-coral {
+  --emd-gold: #993c1d;
+  --emd-gold-light: #d85a30;
 }
 
-input[type='checkbox']:checked ~ body{
-    overflow: hidden;
+/* Floating accent-theme toggle */
+.theme-toggle {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 1200;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 0.5px solid var(--emd-border);
+  background-color: var(--emd-black-soft);
+  color: var(--emd-gold-light);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, color 0.25s ease;
 }
 
+.theme-toggle:hover {
+  transform: rotate(30deg) scale(1.05);
+}
+
+/* Editorial contrast: sans-serif for eyebrows, labels, meta, nav, buttons */
+.about-eyebrow,
+.contact-eyebrow,
+.designs-eyebrow,
+.services-eyebrow,
+.emd-modal-eyebrow,
+.designs-sub,
+.contact-sub,
+.about-lead,
+.designs-filter,
+.design-card-meta,
+.stat-label,
+.contact-info-label,
+.contact-info-value,
+.emd-field span,
+.emd-btn,
+.process-card p,
+.value-card p,
+.card .card-text li,
+.custom-nav-link,
+.hiddenLinks ul a {
+  font-family: var(--emd-font-sans) !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: #0d0d0d !important;
+}
+
+header,
+section {
+  margin: 0;
+  padding: 0;
+}
+
+input[type="checkbox"]:checked ~ body {
+  overflow: hidden;
+}
+
+/* Mediums ticker */
+.ticker {
+  overflow: hidden;
+  width: 100%;
+  background-color: var(--emd-cream);
+  padding: 14px 0;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: inline-flex;
+  align-items: center;
+  animation: ticker-scroll 28s linear infinite;
+}
+
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  color: #1a1a1a;
+  font-family: var(--emd-font-serif);
+  font-size: 1.1rem;
+  padding: 0 6px;
+}
+
+.ticker-dot {
+  color: var(--emd-gold);
+  margin: 0 22px;
+  font-size: 0.8rem;
+}
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
+
+/* Ticker is a mobile/tablet flourish — hide it on large screens */
+@media (min-width: 992px) {
+  .ticker {
+    display: none;
+  }
+}
+
+/* Scroll reveal micro-interaction */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shared contact modal + form styling (used by ContactModal + Contact page)   */
+/* -------------------------------------------------------------------------- */
+
+.emd-modal-content {
+  background-color: var(--emd-black-soft) !important;
+  border: 0.5px solid var(--emd-border) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+.emd-modal-header {
+  border-bottom: 0.5px solid var(--emd-border) !important;
+  padding: 22px 24px 18px !important;
+}
+
+.emd-modal-header .btn-close {
+  filter: invert(1) sepia(1) saturate(0.4) hue-rotate(3deg);
+}
+
+.emd-modal-eyebrow {
+  color: var(--emd-gold);
+  letter-spacing: 3px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+  font-family: "Lora", sans-serif;
+}
+
+.emd-modal-title {
+  color: var(--emd-cream) !important;
+  font-family: "Lora", sans-serif;
+  font-weight: 500 !important;
+  font-size: 1.4rem !important;
+}
+
+.emd-modal-body {
+  padding: 22px 24px 26px !important;
+}
+
+.emd-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.emd-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.emd-field span {
+  color: var(--emd-cream-muted);
+  font-family: "Lora", sans-serif;
+  font-size: 0.85rem;
+}
+
+.emd-field input,
+.emd-field textarea {
+  background-color: #0f0d0a;
+  border: 0.5px solid var(--emd-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: var(--emd-cream);
+  font-family: "Lora", sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  resize: vertical;
+}
+
+.emd-field input::placeholder,
+.emd-field textarea::placeholder {
+  color: #6d6355;
+}
+
+.emd-field input:focus,
+.emd-field textarea:focus {
+  border-color: var(--emd-gold-light);
+  box-shadow: 0 0 0 3px rgba(147, 89, 0, 0.25);
+}
+
+.emd-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.emd-btn {
+  flex: 1 1 auto;
+  min-width: 140px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 25px;
+  border: none;
+  font-family: "Lora", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.emd-btn:hover {
+  transform: translateY(-2px);
+}
+
+.emd-btn-primary {
+  background-color: var(--emd-cream);
+  color: #1a1a1a;
+}
+
+.emd-btn-whatsapp {
+  background-color: transparent;
+  border: 0.5px solid var(--emd-cream);
+  color: var(--emd-cream);
+}
+
+.emd-btn-whatsapp i {
+  color: var(--emd-whatsapp);
+  font-size: 1.15rem;
+}
+
+.emd-btn-outline {
+  background-color: transparent;
+  border: 0.5px solid var(--emd-cream);
+  color: var(--emd-cream);
+}

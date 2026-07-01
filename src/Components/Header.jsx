@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import {Link} from 'react-router-dom'
 import {NavLink} from 'react-router-dom'
 import "../Styles/Header.css"
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import ReorderIcon from '@mui/icons-material/Reorder';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import CloseIcon from '@mui/icons-material/Close';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,13 +11,18 @@ import Container from 'react-bootstrap/Container';
 
 function Header() {
 
+  // Close the mobile slide-out menu (CSS checkbox hack) when a link is chosen.
+  function closeMenu() {
+    const toggle = document.getElementById("menu-toggle");
+    if (toggle) toggle.checked = false;
+  }
 
   return (
     <>
     <div className="header"> 
 
     <Link to='/' className="navbar-logo" >
-      <img className='icon' src="\Logos\EMD logo.svg" alt='Icon'/>
+      <img className='icon' src="/Logos/EMD logo.svg" alt='Eclectic Mélange Designs logo'/>
       </Link>
 
       <div className='menu-container' > 
@@ -32,9 +35,10 @@ function Header() {
      
         <div  className='hiddenLinks' id='hiddenLinks' role='navigation'>  
           <ul >
-           <Link to='/'>HOME </Link>
-            <Link to='/about'>ABOUT </Link>
-            <Link to='/designs'>DESIGNS</Link>
+           <Link to='/' onClick={closeMenu}>HOME </Link>
+            <Link to='/about' onClick={closeMenu}>ABOUT </Link>
+            <Link to='/designs' onClick={closeMenu}>DESIGNS</Link>
+            <Link to='/contact' onClick={closeMenu}>CONTACT</Link>
             </ul>
             </div>
 
@@ -42,7 +46,7 @@ function Header() {
             <Container> 
 
               <Navbar.Brand > <Link to='/' className="navbar-brand" >
-                <img src="\Logos\EMD logo.svg" alt='Icon'  />
+                <img src="/Logos/EMD logo.svg" alt='Eclectic Mélange Designs logo'  />
                 </Link> 
                 </Navbar.Brand>
 
@@ -51,6 +55,7 @@ function Header() {
            <NavLink to='/' className='nav-link custom-nav-link'>home </NavLink>
            <NavLink  to='/about' className='nav-link custom-nav-link'>about </NavLink>
            <NavLink  to='/designs' className='nav-link custom-nav-link'>designs </NavLink>
+           <NavLink  to='/contact' className='nav-link custom-nav-link'>contact </NavLink>
             
             </Nav>
             </Navbar.Collapse>

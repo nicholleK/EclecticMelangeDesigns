@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
 import "../Styles/About.css";
 import Container from "react-bootstrap/Container";
-import KUTE from "kute.js";
+import Reveal from "../Components/Reveal";
 
 function About() {
   // blob animation code
@@ -29,12 +29,64 @@ function About() {
   return (
     <>
       <section className="about-container">
-        {/* <img className='about-bg-img' src='/Images/bulb on board.jpg' alt='Peru color curve with cream background'/> */}
         <Container>
           <div className="about-content">
-            <div className="row">
-              <div className="col-12 col-md-6 "></div>
-              <div className="col-md-6  d-none d-md-block "></div>
+            <div className="about-intro">
+              <p className="about-eyebrow">Who We Are</p>
+              <h1 className="about-heading">
+                A mélange of disciplines, one design vision
+              </h1>
+              <p className="about-lead">
+                Eclectic Mélange Designs is a multidisciplinary studio blending
+                interior decor, digital product design, and visual storytelling.
+                We believe good design is as little design as possible —
+                purposeful, lasting, and made to connect.
+              </p>
+            </div>
+            <div className="about-intro-image">
+              <img
+                src="/Images/Carousel/kam-idris-_HqHX3LBN18-unsplash (1).jpg"
+                alt="Eclectic Mélange Designs studio interior"
+              />
+            </div>
+
+            <div className="row about-values">
+              <div className="col-12 col-md-4">
+                <Reveal className="value-card" delay={0}>
+                  <i className="fa-solid fa-paintbrush value-icon"></i>
+                  <h3>Craft</h3>
+                  <p>Precision in every detail, from pixel to placement.</p>
+                </Reveal>
+              </div>
+              <div className="col-12 col-md-4">
+                <Reveal className="value-card" delay={120}>
+                  <i className="fa-solid fa-lightbulb value-icon"></i>
+                  <h3>Diversity</h3>
+                  <p>Inspired by many disciplines, cultures, and mediums.</p>
+                </Reveal>
+              </div>
+              <div className="col-12 col-md-4">
+                <Reveal className="value-card" delay={240}>
+                  <i className="fa-solid fa-handshake value-icon"></i>
+                  <h3>Partnership</h3>
+                  <p>Your vision leads; we turn it into something lasting.</p>
+                </Reveal>
+              </div>
+            </div>
+
+            <div className="about-stats">
+              <div className="stat">
+                <span className="stat-number">120+</span>
+                <span className="stat-label">Projects delivered</span>
+              </div>
+              <div className="stat">
+                <span className="stat-number">6</span>
+                <span className="stat-label">Service areas</span>
+              </div>
+              <div className="stat">
+                <span className="stat-number">8 yrs</span>
+                <span className="stat-label">Of practice</span>
+              </div>
             </div>
           </div>
         </Container>
@@ -169,8 +221,6 @@ function About() {
           </div>
         </Container>
       </section>
-
-      <div className="spacer bottom"> </div>
     </>
   );
 }

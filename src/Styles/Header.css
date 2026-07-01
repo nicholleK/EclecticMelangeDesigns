@@ -53,7 +53,7 @@ input[type='checkbox']{
     cursor: pointer;
     background-color: transparent;
     top: 50px;
-    left: 250px;
+    right: 20px;
     color: #F8E1B7;
     z-index: 1000;  /* place it on top of background color of header */
     height: 40px;
@@ -62,7 +62,7 @@ input[type='checkbox']{
     justify-content: center;
     align-items: center;
     transition: transform 0.5s ease, background-color 0.5s ease;  /* apply the above properties over 0.5s each with ease  */
-    
+
 }
 
 
@@ -130,7 +130,7 @@ input[type='checkbox']:checked ~ .backdrop-blur{
     border-radius: 5px;
     transition: transform 0.3s ease;
     z-index: 4;
-    background-color: #000000;
+    background-color: #0d0d0d;
 }
 
 /* for the unordered links  */
@@ -274,50 +274,27 @@ input[type='checkbox'] ~ .menu-icon{
 
  
 @media (min-width: 400px) and (max-width:480px){
-    .menu-icon{
-        left: 365px;
-        }
-
         .navbar-logo{
             margin-top: 20px;
-    
-}
+    }
 }
 
 @media (min-width: 480px) and (max-width:540px){
-    .menu-icon{
-        left: 400px;
-        }
-
         .navbar-logo{
             margin-top: 20px;
-    
-}
-        
+    }
 }
 
 @media (min-width: 540px) and (max-width:600px){
-
-    .menu-icon{
-        left: 450px;
-        }
-
         .navbar-logo{
             margin-top: 20px;
-    
-}
+    }
 }
 
 @media (min-width: 600px) and (max-width: 700px) {
-    .menu-icon{
-        left: 520px;
-        }
-
         .navbar-logo{
             margin-top: 30px;
-    
-}
-    
+    }
 }
 
 
@@ -326,7 +303,7 @@ input[type='checkbox'] ~ .menu-icon{
 @media (min-width: 601px){
     .header{
         /* background: linear-gradient(to right,#1a1a1a  0%,  rgb(163, 139, 7) 70%, rgb(255, 111, 0) 90%, #1a1a1a 100%); */
-        background: black;
+        background: #000000;
     }
 
     .navbar-logo{
@@ -341,17 +318,11 @@ input[type='checkbox'] ~ .menu-icon{
 
 
 @media (min-width: 701px) and (max-width: 768px) {
-    .menu-icon{
-        left: 590px;
-        }
-
-
         .navbar-logo{
             margin-top: 30px;
             justify-content: center;
-            right: 200px; 
-    
-}
+            right: 200px;
+    }
 }
 
 
